@@ -3,16 +3,16 @@ const http = require("http");
 
 async function generateRoadmapAgent(data) {
   try {
-    // 🔒 Basic validation (avoid undefined crashes)
     if (!data || !data.role || !Array.isArray(data.techStack)) {
-      throw new Error("Invalid input data passed to AI agent");
+      throw new Error("Invalid input data");
     }
 
     const prompt = `
 You are a senior software engineer mentor.
 
-Create a structured roadmap.
+Generate a roadmap in STRICT JSON format.
 
+INPUT:
 Role: ${data.role}
 Tech Stack: ${data.techStack.join(", ")}
 Level: ${data.level}
@@ -21,10 +21,21 @@ Deadline: ${data.deadline}
 Goal Type: ${data.goalType}
 Projects: ${data.projects}
 
-Return:
-- Weekly plan
-- Topics
-- Projects
+RULES:
+- Return ONLY JSON
+- No explanation, no markdown
+- Max 6 weeks
+
+FORMAT:
+[
+  {
+    "week": "Week 1",
+    "title": "Topic title",
+    "topics": ["topic1", "topic2"],
+    "tasks": ["task1", "task2", "task3"],
+    "project": "project name"
+  }
+]
 `;
 
     console.log("🚀 Calling Groq API...");
@@ -33,12 +44,7 @@ Return:
       "https://api.groq.com/openai/v1/chat/completions",
       {
         model: "llama-3.1-8b-instant",
-        messages: [
-          {
-            role: "user",
-            content: prompt,
-          },
-        ],
+        messages: [{ role: "user", content: prompt }],
         temperature: 0.7,
       },
       {
@@ -46,34 +52,49 @@ Return:
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
           "Content-Type": "application/json",
         },
-        timeout: 10000, // 🔥 Prevent hanging
-        httpAgent: new http.Agent({ keepAlive: false }), // 🔥 Fix ECONNRESET
+        timeout: 10000,
+        httpAgent: new http.Agent({ keepAlive: false }),
       }
     );
 
-    // 🔍 Safe extraction
-    const content =
+    const raw =
       response?.data?.choices?.[0]?.message?.content;
 
-    if (!content) {
-      throw new Error("Invalid AI response structure");
-    }
+    if (!raw) throw new Error("Empty AI response");
 
     console.log("✅ AI Response received");
 
-    return content;
+    // 🔥 CLEAN JSON (important)
+    const cleaned = raw
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    let parsed;
+
+    try {
+      parsed = JSON.parse(cleaned);
+    } catch (err) {
+      console.error("❌ JSON PARSE ERROR:", cleaned);
+      throw new Error("Invalid JSON from AI");
+    }
+
+    return parsed;
 
   } catch (error) {
-    console.error("❌ ERROR TYPE:", error.code || "UNKNOWN");
-    console.error(
-      "❌ FULL ERROR:",
-      error.response?.data || error.message
-    );
+    console.error("❌ ERROR:", error.message);
 
-    // 🔁 Friendly fallback (important for UX)
-    return "AI is currently busy. Please try again in a few seconds.";
+    // fallback safe structure
+    return [
+      {
+        week: "Week 1",
+        title: "Temporary fallback",
+        topics: ["Try again"],
+        tasks: ["AI failed, retry request"],
+        project: "None",
+      },
+    ];
   }
 }
 
 module.exports = generateRoadmapAgent;
-//dffdg
