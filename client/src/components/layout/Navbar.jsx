@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../context/AuthContext";
 import { NAV_LINKS, SERVICES } from "../../constants/services";
 import ServiceIcon from "./ServiceIcon";
 
@@ -107,13 +108,30 @@ function ServicesDropdown({ isOpen, onClose }) {
 }
 
 export default function Navbar() {
+  const { user, isAuthenticated, logout, loading } = useAuth();
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef(null);
   const location = useLocation();
+
+  useEffect(() => {
+    if (!userMenuOpen) return;
+
+    function handleClickOutside(event) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target)) {
+        setUserMenuOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [userMenuOpen]);
 
   useEffect(() => {
     setServicesOpen(false);
     setMobileOpen(false);
+    setUserMenuOpen(false);
   }, [location.pathname]);
 
   return (
@@ -166,6 +184,56 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex items-center gap-3">
+          {!loading && !isAuthenticated && (
+            <>
+              <Link
+                to="/login"
+                className="px-3 py-2 text-sm text-zinc-400 hover:text-zinc-100 transition-colors rounded-lg hover:bg-zinc-800/50"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/register"
+                className="px-4 py-2 text-sm font-medium rounded-lg border border-zinc-700 hover:border-zinc-600 text-zinc-200 transition-colors"
+              >
+                Register
+              </Link>
+            </>
+          )}
+          {!loading && isAuthenticated && (
+            <div className="relative" ref={userMenuRef}>
+              <button
+                type="button"
+                onClick={() => setUserMenuOpen((open) => !open)}
+                className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-zinc-800/50 transition-colors"
+                aria-expanded={userMenuOpen}
+                aria-haspopup="true"
+              >
+                <span className="w-7 h-7 rounded-full bg-violet-600/30 border border-violet-500/30 flex items-center justify-center text-xs font-medium text-violet-300">
+                  {user.name?.charAt(0)?.toUpperCase() ?? "U"}
+                </span>
+                <span className="text-sm text-zinc-300 max-w-[120px] truncate">{user.name}</span>
+              </button>
+              {userMenuOpen && (
+                <div className="absolute top-full right-0 mt-2 w-48 rounded-xl border border-zinc-800 bg-zinc-950/95 backdrop-blur-xl shadow-2xl shadow-black/40 overflow-hidden z-50">
+                  <div className="px-4 py-3 border-b border-zinc-800/80">
+                    <p className="text-sm text-zinc-200 truncate">{user.name}</p>
+                    <p className="text-xs text-zinc-500 truncate">{user.email}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      logout();
+                      setUserMenuOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-2.5 text-sm text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800/60 transition-colors"
+                  >
+                    Log out
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
           <Link
             to="/roadmap"
             className="px-4 py-2 text-sm font-medium rounded-lg bg-violet-600 hover:bg-violet-500 text-white transition-colors"
@@ -240,6 +308,37 @@ export default function Navbar() {
               ))}
             </ul>
           </div>
+          {!loading && !isAuthenticated && (
+            <div className="flex gap-2">
+              <Link
+                to="/login"
+                className="flex-1 text-center px-4 py-2.5 text-sm rounded-lg border border-zinc-700 text-zinc-300"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/register"
+                className="flex-1 text-center px-4 py-2.5 text-sm font-medium rounded-lg bg-violet-600 text-white"
+              >
+                Register
+              </Link>
+            </div>
+          )}
+          {!loading && isAuthenticated && (
+            <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-zinc-900/60 border border-zinc-800">
+              <div>
+                <p className="text-sm text-zinc-200">{user.name}</p>
+                <p className="text-xs text-zinc-500 truncate">{user.email}</p>
+              </div>
+              <button
+                type="button"
+                onClick={logout}
+                className="text-xs text-zinc-400 hover:text-zinc-200 px-2 py-1"
+              >
+                Log out
+              </button>
+            </div>
+          )}
           <Link
             to="/roadmap"
             className="block w-full text-center px-4 py-2.5 text-sm font-medium rounded-lg bg-violet-600 text-white"
