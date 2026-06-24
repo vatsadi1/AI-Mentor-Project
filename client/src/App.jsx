@@ -1,15 +1,14 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import RoadmapPage from "./features/Roadmaps/pages/Home";
 
-import Home from './pages/Home'
- 
- 
- function App() {
-   return (
-      <>
-      <Home/>
-    
-      </>
-   )
- }
- 
- export default App
- 
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/roadmap" element={<RoadmapPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}

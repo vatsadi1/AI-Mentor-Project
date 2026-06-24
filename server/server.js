@@ -1,6 +1,6 @@
  
 const app = require("./src/app.js")
- 
+ const ConnecttoDb = require("./src/config/connectToDb.js")
  
 
 const PORT = process.env.PORT || 3000
@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000
 async function startServer() {
     try{
 // Db coonection goes herer
- 
+ await ConnecttoDb()
 
 const server = app.listen(PORT,()=>{
     console.log("Server is running on port :",PORT)
