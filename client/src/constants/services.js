@@ -15,8 +15,8 @@ export const SERVICES = [
     shortName: "Resume Analyzer",
     description:
       "Upload your resume and receive AI feedback on structure, keywords, and ATS compatibility.",
-    href: null,
-    available: false,
+    href: "/resume",
+    available: true,
     icon: "file",
   },
   {
