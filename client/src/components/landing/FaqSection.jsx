@@ -7,11 +7,11 @@ const FAQS = [
   {
     question: "Which services are available today?",
     answer:
-<<<<<<< HEAD
+
       "Roadmap Generator and AI Interview Coach are live. Resume Analyzer, Content Writer, and Code Reviewer are coming soon.",
-=======
-      "The Roadmap Generator and Resume Analyzer are live. AI Interview Coach, Content Writer, and Code Reviewer are coming soon.",
->>>>>>> 50874ad5b44a12740509fa907b7f809362b852c1
+
+     
+
   },
   {
     question: "Do I need to create an account?",
