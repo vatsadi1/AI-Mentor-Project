@@ -35,8 +35,8 @@ export const SERVICES = [
     shortName: "Content Writer",
     description:
       "Draft portfolio posts, README files, and technical blog outlines in your voice.",
-    href: null,
-    available: false,
+    href: "/content",
+    available: true,
     icon: "pen",
   },
   {
