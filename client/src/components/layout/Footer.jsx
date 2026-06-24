@@ -4,6 +4,7 @@ import { SERVICES } from "../../constants/services";
 const FOOTER_LINKS = {
   Product: [
     { label: "Roadmap Generator", href: "/roadmap", external: false },
+    { label: "Resume Analyzer", href: "/resume", external: false },
     { label: "How it works", href: "/#how-it-works", external: true },
     { label: "Features", href: "/#features", external: true },
   ],
@@ -33,7 +34,7 @@ export default function Footer() {
               next role.
             </p>
             <p className="mt-4 text-xs font-mono text-zinc-600">
-              {comingSoonCount + 1} tools · 1 live now
+              {comingSoonCount + 2} tools · 2 live now
             </p>
           </div>
 

@@ -55,12 +55,13 @@ const FEATURES = [
     ),
   },
   {
-    title: "More tools incoming",
+    title: "Resume analysis",
     description:
-      "Resume analysis, interview coaching, content writing, and code review — all launching soon.",
+      "Upload your resume for AI feedback on structure, keywords, ATS compatibility, and bullet improvements.",
     icon: (
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
-        <path d="M4 11h14M11 4v14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+        <path d="M6 2h8l4 4v14a1 1 0 01-1 1H6a1 1 0 01-1-1V3a1 1 0 011-1z" stroke="currentColor" strokeWidth="1.3" />
+        <path d="M14 2v4h4M8 10h6M8 13h4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
       </svg>
     ),
   },
