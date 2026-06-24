@@ -5,9 +5,9 @@ const FAQS = [
       "Yes. The Roadmap Generator is free to use right now. Additional services will be added over time.",
   },
   {
-    question: "Which service is available today?",
+    question: "Which services are available today?",
     answer:
-      "Only the Generate Roadmap tool is live. Resume Analyzer, AI Interview Coach, Content Writer, and Code Reviewer are coming soon.",
+      "The Roadmap Generator and Resume Analyzer are live. AI Interview Coach, Content Writer, and Code Reviewer are coming soon.",
   },
   {
     question: "Do I need to create an account?",
