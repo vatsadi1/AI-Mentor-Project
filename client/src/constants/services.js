@@ -25,8 +25,8 @@ export const SERVICES = [
     shortName: "Interview Coach",
     description:
       "Practice role-specific questions with real-time feedback on your answers and delivery.",
-    href: null,
-    available: false,
+    href: "/interview",
+    available: true,
     icon: "mic",
   },
   {
