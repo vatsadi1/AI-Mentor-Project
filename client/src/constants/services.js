@@ -45,8 +45,8 @@ export const SERVICES = [
     shortName: "Code Reviewer",
     description:
       "Submit snippets for AI review covering bugs, best practices, and improvement suggestions.",
-    href: null,
-    available: false,
+    href: "/code-review",
+    available: true,
     icon: "code",
   },
 ];
