@@ -7,6 +7,7 @@ const FAQS = [
   {
     question: "Which services are available today?",
     answer:
+
       "The Roadmap Generator, Resume Analyzer, and Code Reviewer are live. AI Interview Coach and Content Writer are coming soon.",
 
 
