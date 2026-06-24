@@ -8,15 +8,17 @@ const FAQS = [
     question: "Which services are available today?",
     answer:
 
-      "Roadmap Generator and AI Interview Coach are live. Resume Analyzer, Content Writer, and Code Reviewer are coming soon.",
+      "The Roadmap Generator, Resume Analyzer, and Code Reviewer are live. AI Interview Coach and Content Writer are coming soon.",
 
-     
 
   },
   {
     question: "Do I need to create an account?",
     answer:
+
       "No account is required. Configure your preferences and use any live tool instantly.",
+
+
   },
   {
     question: "Can I download my roadmap?",
