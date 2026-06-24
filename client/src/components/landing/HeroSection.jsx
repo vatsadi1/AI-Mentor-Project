@@ -111,7 +111,7 @@ export default function HeroSection() {
               </div>
               <div className="w-px bg-zinc-800" aria-hidden="true" />
               <div>
-                <p className="text-2xl font-semibold text-zinc-100">1</p>
+                <p className="text-2xl font-semibold text-zinc-100">2</p>
                 <p className="text-zinc-500 text-xs mt-0.5">Live today</p>
               </div>
               <div className="w-px bg-zinc-800" aria-hidden="true" />

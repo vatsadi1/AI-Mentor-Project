@@ -6,8 +6,10 @@ app.use(express.json())
 app.use(cors())
 
 const roadmapRouter = require('./router/roadmapRouter.js')
+const interviewRouter = require('./router/interviewRouter.js')
 
 app.use("/api/roadmap",roadmapRouter)
+app.use("/api/interview", interviewRouter)
 app.use("/api/test",roadmapRouter)
 
 
