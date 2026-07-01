@@ -27,17 +27,17 @@ export function clearStoredToken() {
 }
 
 export async function registerUser({ name, email, password }) {
-  const { data } = await client.post("/auth/register", { name, email, password });
+  const { data } = await client.post("/api/auth/register", { name, email, password });
   return data;
 }
 
 export async function loginUser({ email, password }) {
-  const { data } = await client.post("/auth/login", { email, password });
+  const { data } = await client.post("/api/auth/login", { email, password });
   return data;
 }
 
 export async function fetchCurrentUser() {
-  const { data } = await client.get("/auth/me");
+  const { data } = await client.get("/api/auth/me");
   return data.user;
 }
 
