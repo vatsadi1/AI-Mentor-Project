@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import MarketingLayout from "../components/layout/MarketingLayout";
 import { useAuth } from "../context/AuthContext";
 import { getAuthErrorMessage } from "../services/authService";
@@ -7,6 +7,8 @@ import { getAuthErrorMessage } from "../services/authService";
 export default function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || "/";
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -18,7 +20,7 @@ export default function RegisterPage() {
 
     try {
       await register(form);
-      navigate("/");
+      navigate(from, { replace: true });
     } catch (err) {
       setError(getAuthErrorMessage(err));
     } finally {

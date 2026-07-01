@@ -40,6 +40,16 @@ export const SERVICES = [
     icon: "pen",
   },
   {
+    id: "practice-group",
+    name: "Friend Mock Practice",
+    shortName: "Mock Practice",
+    description:
+      "Practice interviews with a friend in real time. AI scores both answers by topic from an interviewer's view.",
+    href: "/practice-group",
+    available: true,
+    icon: "users",
+  },
+  {
     id: "reviewer",
     name: "Code Reviewer",
     shortName: "Code Reviewer",

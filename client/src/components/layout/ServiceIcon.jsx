@@ -55,6 +55,18 @@ const icons = {
       />
     </svg>
   ),
+  users: (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="2.5" stroke="currentColor" strokeWidth="1.3" />
+      <circle cx="13.5" cy="8" r="2" stroke="currentColor" strokeWidth="1.3" />
+      <path
+        d="M3 16C3 13.5 4.8 12 7 12C9.2 12 11 13.5 11 16M11.5 16C11.5 14 12.8 12.5 14.5 12.5C16.2 12.5 17.5 14 17.5 16"
+        stroke="currentColor"
+        strokeWidth="1.3"
+        strokeLinecap="round"
+      />
+    </svg>
+  ),
 };
 
 export default function ServiceIcon({ name, className = "" }) {

@@ -31,7 +31,7 @@ export default function Home() {
         <header className="pf-topbar">
           <Link to="/" className="pf-logo" style={{ textDecoration: "none" }}>
             <div className="pf-logo-dot" aria-hidden="true" />
-            <span className="pf-logo-text">Pathforge</span>
+            <span className="pf-logo-text">VidhyarthiMarg</span>
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
             <Link

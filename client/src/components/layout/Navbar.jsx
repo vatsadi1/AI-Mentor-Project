@@ -6,12 +6,19 @@ import ServiceIcon from "./ServiceIcon";
 
 function Logo() {
   return (
-    <Link to="/" className="flex items-center gap-2.5 group">
-      <span className="w-2 h-2 rounded-full bg-violet-500 group-hover:scale-110 transition-transform" />
-      <span className="font-mono text-sm font-medium tracking-widest uppercase text-zinc-400">
-        Pathforge
-      </span>
-    </Link>
+   <Link to="/" className="flex items-center gap-3 group">
+ 
+
+  <img
+    src="IMG_20260625_050219-removebg-preview.png"
+    alt="VidhyarthiMarg Logo"
+    className="h-12 w-auto object-contain"
+  />
+
+  <span className="font-mono text-sm font-medium tracking-widest uppercase text-zinc-400">
+    VidhyarthiMarg
+  </span>
+</Link>
   );
 }
 

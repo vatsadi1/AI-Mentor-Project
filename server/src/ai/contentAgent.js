@@ -8,6 +8,9 @@ You write content that is:
 - Structured for scanability — strong hooks, clear headings, logical flow
 - Voice-aware — you adapt tone, vocabulary, and rhythm to match the author's stated style
 - Platform-native — LinkedIn posts differ from READMEs differ from blog outlines
+- Your response will be parsed by JSON.parse().
+- Any invalid JSON will cause a system failure.
+- Return exactly one JSON object and nothing else.
 
 Rules:
 - Return ONLY valid JSON. No markdown code fences. No commentary outside JSON.
@@ -164,13 +167,18 @@ async function generateContent(data) {
     ],
     temperature: 0.55,
     maxTokens: 4096,
+    
   });
+  console.log("========== RAW ==========");
+console.log(raw);
+console.log("=========================");
 
   const parsed = extractJson(raw);
   const quality = parsed.quality || {};
   const seo = parsed.seo || {};
   const social = parsed.social || {};
   const metadata = parsed.metadata || {};
+  
 
   return {
     title: String(parsed.title || "Untitled").trim(),
@@ -212,6 +220,7 @@ async function generateContent(data) {
     nextSteps: Array.isArray(parsed.nextSteps)
       ? parsed.nextSteps.map((s) => String(s).trim()).filter(Boolean)
       : [],
+      
   };
 }
 

@@ -8,35 +8,41 @@ import InterviewPage from "./features/Interview/pages/Home";
 import ResumePage from "./features/Resume/pages/Home";
 
 import ContentPage from "./features/Content/pages/Home";
-
 import CodeReviewPage from "./features/CodeReviewer/pages/Home";
-
-
+import PracticeGroupPage from "./features/PracticeGroup/pages/Home";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/roadmap" element={<RoadmapPage />} />
-        <Route path="/interview" element={<InterviewPage />} />
-        <Route path="/resume" element={<ResumePage />} />
-        <Route path="/content" element={<ContentPage />} />
-        <Route path="/interview" element={<InterviewPage />} />
-        <Route path="/resume" element={<ResumePage />} />
-
-      </Routes>
-
       <AuthProvider>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
           <Route path="/roadmap" element={<RoadmapPage />} />
+          <Route path="/interview" element={<InterviewPage />} />
           <Route path="/resume" element={<ResumePage />} />
+          <Route path="/content" element={<ContentPage />} />
           <Route path="/code-review" element={<CodeReviewPage />} />
+          <Route
+            path="/practice-group"
+            element={
+              <ProtectedRoute>
+                <PracticeGroupPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/practice-group/join/:roomCode"
+            element={
+              <ProtectedRoute>
+                <PracticeGroupPage />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </AuthProvider>
-
     </BrowserRouter>
   );
 }

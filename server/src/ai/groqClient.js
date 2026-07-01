@@ -1,5 +1,6 @@
 const axios = require("axios");
 const http = require("http");
+const { jsonrepair } = require("jsonrepair");
 
 async function callGroq({ messages, temperature = 0.4, maxTokens = 4096 }) {
   if (!process.env.GROQ_API_KEY) {
@@ -43,6 +44,22 @@ function extractJson(raw) {
   }
 
   return JSON.parse(candidate);
+}
+ 
+
+function extractJson(raw) {
+  try {
+    return JSON.parse(raw);
+  } catch {}
+
+  try {
+    const repaired = jsonrepair(raw);
+    return JSON.parse(repaired);
+  } catch (err) {
+    console.error("FAILED JSON:");
+    console.log(raw);
+    throw err;
+  }
 }
 
 module.exports = { callGroq, extractJson };

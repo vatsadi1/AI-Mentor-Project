@@ -1,30 +1,30 @@
 
-const app = require("./src/app.js")
- const ConnecttoDb = require("./src/config/connectToDb.js")
- 
+const http = require("http");
+const app = require("./src/app.js");
+const ConnecttoDb = require("./src/config/connectToDb.js");
+const { initSocket } = require("./src/socket/index.js");
 
-const PORT = process.env.PORT || 3000
-
+const PORT = process.env.PORT || 3000;
 
 async function startServer() {
-    try{
-// Db coonection goes herer
- await ConnecttoDb()
+  try {
+    await ConnecttoDb();
 
-const server = app.listen(PORT,()=>{
-    console.log("Server is running on port :",PORT)
-})
+    const httpServer = http.createServer(app);
+    initSocket(httpServer);
 
-server.on("err",(error)=>{
-    console.error(error)
+    httpServer.listen(PORT, () => {
+      console.log("Server is running on port:", PORT);
+    });
+
+    httpServer.on("error", (error) => {
+      console.error(error);
+      process.exit(1);
+    });
+  } catch (err) {
+    console.error("Failed to start server", err);
     process.exit(1);
-
-})
-
-    }catch(err){
-console.error("Failed to start server",err)
-process.exit(1)
-    }
+  }
 }
 
-startServer()
+startServer();

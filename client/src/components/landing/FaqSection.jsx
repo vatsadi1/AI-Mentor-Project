@@ -2,13 +2,13 @@ const FAQS = [
   {
     question: "Is Pathforge free to use?",
     answer:
-      "Yes. The Roadmap Generator is free to use right now. Additional services will be added over time.",
+      "Yes. The All Services are free to use right now. Additional services will be added over time.",
   },
   {
     question: "Which services are available today?",
     answer:
 
-      "The Roadmap Generator, Resume Analyzer, and Code Reviewer are live. AI Interview Coach and Content Writer are coming soon.",
+      "The Roadmap Generator, Resume Analyzer, and Code Reviewer are live. AI Interview Coach and Content Writer are Live.",
 
 
   },
