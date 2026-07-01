@@ -2,7 +2,7 @@ import axios from "axios";
 import { apiClient } from "../../../services/authService";
 
 export async function reviewCode(payload) {
-  const { data } = await apiClient.post("/code-review/review", payload);
+  const { data } = await apiClient.post("/api/code-review/review", payload);
   return data;
 }
 

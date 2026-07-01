@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export async function generateContent(payload) {
-  const { data } = await client.post("/content/generate", payload);
+  const { data } = await client.post("/api/content/generate", payload);
   return data;
 }
 

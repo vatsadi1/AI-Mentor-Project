@@ -3,7 +3,7 @@ import axios from "axios";
 const TOKEN_KEY = "pathforge_token";
 
 const client = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 client.interceptors.request.use((config) => {

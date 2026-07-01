@@ -1,12 +1,12 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL,
   headers: { "Content-Type": "application/json" },
 });
 
 export async function generateRoadmap(payload) {
-  const { data } = await client.post("/roadmap/generate", payload);
+  const { data } = await client.post("/api/roadmap/generate", payload);
   return data;
 }
 

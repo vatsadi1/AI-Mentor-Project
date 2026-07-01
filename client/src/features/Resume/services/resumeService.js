@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export async function analyzeResume(formData) {
-  const { data } = await client.post("/resume/analyze", formData, {
+  const { data } = await client.post("/api/resume/analyze", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return data;

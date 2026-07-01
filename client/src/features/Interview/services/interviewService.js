@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "/api",
+  baseURL: import.meta.env.VITE_API_URL,
   headers: { "Content-Type": "application/json" },
 });
 
@@ -11,7 +11,7 @@ export async function startInterviewSession(payload) {
 }
 
 export async function evaluateInterviewAnswer(payload) {
-  const { data } = await client.post("/interview/evaluate", payload);
+  const { data } = await client.post("/api/interview/evaluate", payload);
   return data;
 }
 
