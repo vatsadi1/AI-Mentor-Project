@@ -31,6 +31,7 @@ const FOOTER_LINKS = {
     { label: "Code Reviewer", href: "/code-review", external: false },
     { label: "Content Writer", href: "/content", external: false },
     { label: "Interview Coach", href: "/interview", external: false },
+    { label: "Practice Group", href: "/practice-group", external: false },
     
   ],
   Company: [
@@ -68,7 +69,7 @@ export default function Footer() {
               next role.
             </p>
             <p className="mt-4 text-xs font-mono text-zinc-600">
-              {comingSoonCount + 5} tools · 5 live now
+              {comingSoonCount + 6} tools · 6 live now
             </p>
           </div>
 

@@ -106,12 +106,12 @@ export default function HeroSection() {
 
             <div className="flex flex-wrap gap-6 text-sm">
               <div>
-                <p className="text-2xl font-semibold text-zinc-100">5</p>
+                <p className="text-2xl font-semibold text-zinc-100">6</p>
                 <p className="text-zinc-500 text-xs mt-0.5">AI tools planned</p>
               </div>
               <div className="w-px bg-zinc-800" aria-hidden="true" />
               <div>
-                <p className="text-2xl font-semibold text-zinc-100">5</p>
+                <p className="text-2xl font-semibold text-zinc-100">6</p>
                 <p className="text-zinc-500 text-xs mt-0.5">Live today</p>
               </div>
               <div className="w-px bg-zinc-800" aria-hidden="true" />

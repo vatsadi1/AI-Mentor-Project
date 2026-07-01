@@ -14,6 +14,16 @@ const codeReviewRouter = require('./router/codeReviewRouter.js')
 const practiceGroupRouter = require('./router/practiceGroupRouter.js')
 
 
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://YOUR-FRONTEND.onrender.com"
+    ],
+    credentials:true
+  })
+)
+
 
 app.use("/api/roadmap",roadmapRouter)
 app.use("/api/interview", interviewRouter)
