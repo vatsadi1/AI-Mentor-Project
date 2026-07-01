@@ -18,7 +18,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://YOUR-FRONTEND.onrender.com"
+      "https://ai-mentor-project-okou.onrender.com"
     ],
     credentials:true
   })
